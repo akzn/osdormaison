@@ -1,0 +1,329 @@
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+   /* padding-top: 70px;  Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+body {
+    background-color: black;
+    color: #fff;
+}
+
+.header-top {
+    background-color: #222;
+    border-color: #080808;
+}
+
+.header-top a{
+    padding: 10px;
+    color: #fff;
+}
+
+.header-middle{
+    background: black;
+    padding: 10px;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+     margin-bottom: 30px; 
+}
+
+.carousel-control,
+.item {
+    /* border-radius: 4px; */
+}
+
+.caption {
+    /* height: 130px; */
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.cart a{
+    font-size: 25px !important;
+   /* padding-right: 150px; */
+   
+}
+
+li.pull-right.cart {
+    color: #222;
+}
+
+.btn-checkout a{
+   border-radius: 0;
+   color :#fff !important;
+   font-size: 16px !important;
+
+}
+
+.cart-button {
+    position: relative;
+    display: inline-block;
+    padding-top: 7px;
+}
+
+.cart-button a{
+    color: #9d9d9d;
+}
+
+.cart-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 270px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.cart-button:hover .cart-dropdown {
+    display: block;
+    left:auto;
+    right:0;
+    margin-right:-10px;
+}
+
+
+a.btn.btn-primary.add-to-cart {
+    margin-bottom: 50px;
+    background-color: #222222;
+    border-color: #222222;
+    border-radius: 0;
+}
+
+.center-row {
+  display:table;
+}
+.center {
+  display:table-cell;
+    vertical-align:middle;
+    float:none;
+}
+
+.div-img-thumbnail{
+    height: 190px;
+    overflow: hidden;
+}
+
+.div-img-thumbnail-big{
+    height: 260px;
+    overflow: hidden;
+}
+
+.dropdown:hover .dropdown-menu {
+   /* display: block; */
+}
+
+.img-responsive {
+    margin: 0 auto;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.table tr>th{
+    text-align:center;
+}
+
+.table tr>td{
+    text-align:center;
+}
+
+td.text-right{
+    text-align:right !important;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+
+.navbar {
+    border-radius: 0;
+}
+
+.form-control{
+    border-radius: 0;
+}
+
+.search-box {
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.row.header-kategori {
+    background: #222222;
+    
+    color: #9d9d9d;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.row.pagination{
+    float:right;
+}
+
+.row.product-list > .col-md-3:nth-child(4n+1) {
+    clear: both;
+}
+
+.product-detail h3.price {
+    margin-bottom: 50px;
+}
+
+.product-detail a.btn.btn-primary.add-to-cart {
+    margin-bottom: 50px;
+    background-color: #B90505;
+    border-color: #B90505;
+    border-radius: 0;
+}
+
+.product-detail h2,.product-detail h4{
+    text-transform: uppercase;
+}
+
+.pagination-sm>li:first-child>a, .pagination-sm>li:first-child>span{
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.pagination-sm>li:last-child>a, .pagination-sm>li:last-child>span {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span, .pagination-sm>li:last-child>a, .pagination-sm>li:last-child>span{
+    /*margin-left: 0;*/
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.pagination-sm>li>a, .pagination-sm>li>span {
+    background-color: #b90505 !important;
+    color: white !important;
+    margin-left: 5px !important;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #000000 !important;
+}
+
+
+footer {
+    margin: 50px 0;
+}
+
+/* navbar kopie */
+ 
+.dropdown-menu > li.kopie > a {
+    padding-left:5px;
+}
+ 
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+   top:0;left:100%;
+   margin-top:-6px;margin-left:-1px;
+   -webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;
+ }
+  
+.dropdown-submenu > a:after {
+  border-color: transparent transparent transparent #333;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  content: " ";
+  display: block;
+  float: right;  
+  height: 0;     
+  margin-right: -10px;
+  margin-top: 5px;
+  width: 0;
+}
+ 
+.dropdown-submenu:hover>a:after {
+    border-left-color:#555;
+ }
+
+.dropdown-menu > li > a:hover, .dropdown-menu > .active > a:hover {
+  text-decoration: underline;
+}  
+  
+@media (max-width: 767px) {
+
+  .navbar-nav  {
+     display: inline;
+  }
+  .navbar-default .navbar-brand {
+    display: inline;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+  }
+  .navbar-default .navbar-nav .dropdown-menu > li > a {
+    color: red;
+    background-color: #ccc;
+    border-radius: 4px;
+    margin-top: 2px;   
+  }
+   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+     color: #333;
+   }
+   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+     background-color: #ccc;
+   }
+
+   .navbar-nav .open .dropdown-menu {
+     border-bottom: 1px solid white; 
+     border-radius: 0;
+   }
+  .dropdown-menu {
+      padding-left: 10px;
+  }
+  .dropdown-menu .dropdown-menu {
+      padding-left: 20px;
+   }
+   .dropdown-menu .dropdown-menu .dropdown-menu {
+      padding-left: 30px;
+   }
+    
+   li.dropdown.open {
+    border: 0px solid red;
+   }
+ 
+
+}
+ 
+@media (min-width: 768px) {
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block;
+  }
+  #navbar {
+    text-align: center;
+  }
+}  
+/* ./navbar kopie */
