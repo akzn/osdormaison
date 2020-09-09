@@ -20,8 +20,8 @@
 <body>	
 	<div class="container">
 		<?php 
-		include 'config/config.php';
-		// require '../../config/conn.php';
+		// include 'config/config.php';
+		require '../config/conn.php';
 		if(isset($_GET['pesan'])){
 			if($_GET['pesan'] == "gagal"){
 				echo "<div style='margin-bottom:-55px' class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-warning-sign'></span>  Login Gagal !! Username dan Password Salah !!</div>";

@@ -1,6 +1,7 @@
 <?php 
 session_start();
-include 'config/config.php';
+// include 'config/config.php';
+require '../config/conn.php';
 $uname=$_POST['uname'];
 $pass=$_POST['pass'];
 //$pas=md5($pass);

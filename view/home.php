@@ -114,14 +114,21 @@
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <div class="div-img-thumbnail">
-                                <img class="img-responsive" src="<?=BASE?>admin/img/produk/<?=$row['gambar']?>.jpg" alt="" >
+                                <a class="product-name" href="?hal=produk&id=<?=$row['id_produk']?>"><img class="img-responsive" src="<?=BASE?>admin/img/produk/<?=$row['gambar']?>.jpg" alt="" ></a>
                             </div>
                             <div class="caption">
-                                <h4 class="text-center"><?=uang($row['harga'])?></h4>
-                                <h4 class="text-center"><a href="?hal=produk&id=<?=$row['id_produk']?>"><?=$row['nama_produk']?></a></h4>
+                                <h5 class="text-center" style="height: 30px;"><a class="product-name" href="?hal=produk&id=<?=$row['id_produk']?>"><?=$row['nama_produk']?></a></h5>
+                                
                             </div>
                             <div class="text-center">
-                                <a href="" class="btn btn-primary add-to-cart" data-id='<?=$row['id_produk']?>' data-price='<?=$row['harga']?>'>Tambahkan ke keranjang</a>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-md-6 text-center">
+                                        <h4 class="text-center" style="color:#222222;padding-left: 10px"><?=uang($row['harga'])?></h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="" class="btn btn-primary add-to-cart" data-id='<?=$row['id_produk']?>' data-price='<?=$row['harga']?>'>Beli</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -138,11 +145,22 @@
                     <div class="col-md-3">
                         <div class="row header-kategori">
                             <div class="col-md-6">
-                                <h4 class="">Berita</h4>
+                                <h4 class="">Kategori</h4>
                             </div>
                         </div>
-                        <div class="row product-list row-berita">
+                        <div class="row product-list row-berita sidebar-category">
+
+                            <ul class="nav nav-pills nav-stacked">     
                             <?php 
+                                $get_kategori=mysql_query("SELECT * from tb_kategori order by id_kategori desc");
+                                while($kategori = mysql_fetch_array($get_kategori)): ?>
+
+                                <li class="active"><a href="barang.php"><!-- <span class="glyphicon glyphicon-briefcase"></span> --> <?=ucwords($kategori['nama_kategori'])?></a></li> 
+
+                            <?php endwhile; ?>
+                            </ul>
+
+                            <?php /*
                             $get_berita=mysql_query("SELECT * from tb_berita order by id_berita desc limit 4");
                             while($berita = mysql_fetch_array($get_berita)): ?>
                                 <div class="col-sm-12">
@@ -156,7 +174,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            <?php endwhile; ?>
+                            <?php endwhile; */ ?>
                         </div>
                     </div>
                 </div>

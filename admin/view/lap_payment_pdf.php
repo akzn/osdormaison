@@ -30,49 +30,51 @@ $pdf->Line(1,3.2,28.5,3.2);
 $pdf->SetLineWidth(0);
 $pdf->ln(1);
 $pdf->SetFont('Arial','B',14);
-$pdf->Cell(0,1,'Laporan Data Penjualan Barang',0,0,'C');
+$pdf->Cell(0,1,'Laporan Data Pembayaran',0,0,'C');
 $pdf->ln(1);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(5,0.7,"Di cetak pada : ".date("D-d/m/Y"),0,0,'C');
 $pdf->ln(1);
-$pdf->Cell(6,0.7,"Laporan Penjualan pada : ".$tanggal,0,0,'C');
+$pdf->Cell(6,0.7,"Laporan Pembayaran pada : ".$tanggal,0,0,'C');
 $pdf->ln(1);
 $pdf->Cell(1, 0.8, 'NO', 1, 0, 'C');
 $pdf->Cell(3, 0.8, 'Tanggal', 1, 0, 'C');
-$pdf->Cell(6, 0.8, 'Kode Order', 1, 0, 'C');
-$pdf->Cell(3, 0.8, 'Total', 1, 0, 'C');
-$pdf->Cell(4, 0.8, 'Ongkir', 1, 0, 'C');
-$pdf->Cell(4.5, 0.8, 'Jumlah', 1, 1, 'C');
+$pdf->Cell(3, 0.8, 'Kode Order', 1, 0, 'C');
+$pdf->Cell(3, 0.8, 'Bank Asal', 1, 0, 'C');
+$pdf->Cell(3, 0.8, 'Atas Nama', 1, 0, 'C');
+$pdf->Cell(3, 0.8, 'Bank Tujuan', 1, 0, 'C');
+$pdf->Cell(3, 0.8, 'Nominal', 1, 1, 'C');
 
 // $no=1;
 // $tanggal=$_GET['tanggal'];
-// $query=mysql_query("select * from tb_order where tgl_order=" . $tanggal);
+// $query=mysql_query("select * from tb_payment where tgl_konfirmasi=" . $tanggal);
 
 if ($_GET['tanggal']) {
 		$tanggal=$_GET['tanggal'];
-		$query=mysql_query("select * from tb_order where tgl_order=" . $tanggal);
+		$query=mysql_query("select * from tb_payment where tgl_konfirmasi=" . $tanggal);
 	}else{
 		$tanggal='ALL';
-		$query=mysql_query("select * from tb_order");
+		$query=mysql_query("select * from tb_payment");
 	}
 
 while($lihat=mysql_fetch_array($query)){
 	$pdf->Cell(1, 0.8, $no , 1, 0, 'C');
-	$pdf->Cell(3, 0.8, $lihat['tgl_order'],1, 0, 'C');
-	$pdf->Cell(6, 0.8, $lihat['kode_order'],1, 0, 'C');
-	$pdf->Cell(3, 0.8, uang($lihat['subtotal']), 1, 0,'C');
-	$pdf->Cell(4, 0.8, "Rp. ".number_format($lihat['ongkir'])." ,-", 1, 0,'C');
-	$pdf->Cell(4.5, 0.8, "Rp. ".number_format($lihat['total'])." ,-",1, 1, 'C');	
+	$pdf->Cell(3, 0.8, $lihat['tgl_konfirmasi'],1, 0, 'C');
+	$pdf->Cell(3, 0.8, $lihat['kode_order'],1, 0, 'C');
+	$pdf->Cell(3, 0.8, $lihat['bank_asal'], 1, 0,'C');
+	$pdf->Cell(3, 0.8, $lihat['an_asal'], 1, 0,'C');
+	$pdf->Cell(3, 0.8, $lihat['bank_tujuan'],1, 0, 'C');	
+	$pdf->Cell(3, 0.8, $lihat['nominal'],1, 1, 'C');	
 	
 	$no++;
 }
 
 if ($_GET['tanggal']) {
 		$tanggal=$_GET['tanggal'];
-		$q=mysql_query("select sum(total) as total from tb_order where tgl_order=".$tanggal);
+		$q=mysql_query("select sum(total) as total from tb_payment where tgl_konfirmasi=".$tanggal);
 	}else{
 		$tanggal='ALL';
-		$q=mysql_query("select sum(total) as total from tb_order");
+		$q=mysql_query("select sum(total) as total from tb_payment");
 	}
 
 

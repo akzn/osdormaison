@@ -39,7 +39,7 @@ if ($_FILES["file"]["size"] > 500000) {
     $uploadOk = 0;
 }
 // Allow certain file formats
-if($imageFileType != "jpg") {
+if($imageFileType != "jpg" ) {
     echo "Sorry, only JPG files are allowed.";
     die;
     $uploadOk = 0;

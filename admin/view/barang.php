@@ -23,7 +23,9 @@ $start = ($page - 1) * $per_hal;
 			<td><?php echo $halaman; ?></td>
 		</tr>
 	</table>
-	<a style="margin-bottom:10px" href="lap_barang.php" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Cetak</a>
+	<a style="margin-bottom:10px" href="lap_barang.php" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Download PDF</a>
+
+	<a style="margin-bottom:10px" href="lap_barang_excel.php" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Download Excel</a>
 </div>
 <form action="cari_act.php" method="get">
 	<div class="input-group col-md-5 col-md-offset-7">

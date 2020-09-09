@@ -3,11 +3,14 @@
 <a class="btn" href="order.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 <?php
 	$get_order = mysql_query("SELECT * from tb_order where id_order = '".$_GET['id']."' limit 1") or die(mysql_error());
+
+	$status_order = '';
 	
 	while ($ord = mysql_fetch_array($get_order)) {
 		$subtotal = $ord['subtotal'];
 		$ongkir = $ord['ongkir'];
 		$total_all = $ord['total'];
+		$status_order = $ord['status'];
 ?>
 <div class="row">
 	<div class="col-md-6">
@@ -105,12 +108,30 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<p>Ubah Status Order</p>
+		<p>Ubah Status Order <?=$status_order?></p>
 	</div>
 	<div class="col-md-9">
-		<a href="set_status_order.php?id=<?=$_GET['id']?>&status=dikirim" class="btn btn-primary">Dikirim</a>
-		<a href="set_status_order.php?id=<?=$_GET['id']?>&status=selesai" class="btn btn-info">Selesai</a>
+		<a href="set_status_order.php?id=<?=$_GET['id']?>&status=dikirim" class="btn btn-primary btn-status">Dikirim</a>
+		<a href="set_status_order.php?id=<?=$_GET['id']?>&status=selesai" class="btn btn-info btn-status">Selesai</a>
 	</div>
 </div>
 
 <?php include 'footer.php'; ?>
+
+<script type="text/javascript">
+	$(function(){
+		var status = '<?=$status_order;?>';
+		$('.btn-status').on('click',function(e){
+			e.preventDefault();
+			if (status=='pending') {
+				e.preventDefault();
+				alert('PEMBELI BELUM MELAKUKAN KONFIRMASI PEMBAYARAN !!');
+			} else if (status=='transfer'){
+				e.preventDefault();
+				alert('STATUS PEMBAYARAN BELUM DISETUJUI ADMIN !!');
+			} else {
+				document.location.href=$(this).attr('href');
+			}
+		})
+	})
+</script>

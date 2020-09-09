@@ -1,8 +1,10 @@
 <?php
 session_start();
 if ($_GET['ajax']) {
-	include_once "../config/conn.php";
-	include_once "../config/general_helper.php";
+	// include_once "config/conn.php";
+	require '../config/conn.php';
+	require '../config/general_helper.php';
+	// include_once "config/general_helper.php";
 }
 if ($_SESSION['key_data']) {
 	$key = $_SESSION['key_data'];

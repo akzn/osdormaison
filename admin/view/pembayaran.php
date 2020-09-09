@@ -25,12 +25,24 @@
 if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 	//echo $_GET['tanggal'];die;
 	$tanggal=mysql_real_escape_string($_GET['tanggal']);
-	$tg="lap_order.php?tanggal='$tanggal'";
-	?><a style="margin-bottom:10px" href="<?php echo $tg ?>" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Cetak</a><?php
-}else{
-	$tg="lap_order.php";
+	$tg="lap_payment_pdf.php?tanggal='$tanggal'";
+
+	$link_excel = "lap_payment_excel.php?tanggal='$tanggal'";
+	?>
+
+	
+
+	<?php
+}else {
+	$tg="lap_payment_pdf.php";
+
+	$link_excel = "lap_payment_excel.php";
 }
 ?>
+
+<a style="margin-bottom:10px" href="<?php echo $link_excel ?>" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Download Excel</a>
+
+<a style="margin-bottom:10px" href="<?php echo $tg ?>" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Download PDF</a>
 
 <br/>
 <?php 
@@ -59,6 +71,17 @@ if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 	$no=1;
 	while($b=mysql_fetch_array($brg)){
 
+		if ($b['status_payment'] == 'pending') {
+				$status_label = 'default';
+			} elseif ($b['status_payment']=='success') {
+				$status_label = 'success';
+			} elseif ($b['status_payment']=='not_found') {
+				$status_label = 'danger';
+			} 
+
+		if ($b['status_payment']=='not_found') {
+			$b['status_payment'] = 'ditolak';
+		}
 		?>
 		<tr>
 			<td><?php echo $no++ ?></td>
@@ -68,10 +91,10 @@ if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 			<td><?php echo $b['bank_tujuan'] ?></td>
 
 			<td><?php echo uang($b['nominal']) ?></td>	
-			<td><?=$b['status_payment']?></td>				
+			<td><span class="label label-<?=$status_label?>"><?=$b['status_payment']?></span></td>				
 			<td>		
-				<a href="set_status_payment.php?id=<?php echo $b['id_payment']; ?>&status=not_found" class="btn btn-danger btn-xs">Gagal</a>
-				<a href="set_status_payment.php?id=<?php echo $b['id_payment']; ?>&status=success" class="btn btn-success btn-xs">Sukses</a>
+				<a href="set_status_payment.php?id=<?php echo $b['id_payment']; ?>&status=not_found" class="btn btn-danger btn-xs">Tolak</a>
+				<a href="set_status_payment.php?id=<?php echo $b['id_payment']; ?>&status=success" class="btn btn-success btn-xs">Set Dibayar</a>
 				
 			</td>
 		</tr>

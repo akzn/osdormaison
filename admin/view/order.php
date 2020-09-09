@@ -22,15 +22,30 @@
 </form>
 <br/>
 <?php 
-if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
+if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){	
 	//echo $_GET['tanggal'];die;
 	$tanggal=mysql_real_escape_string($_GET['tanggal']);
 	$tg="lap_order.php?tanggal='$tanggal'";
-	?><a style="margin-bottom:10px" href="<?php echo $tg ?>" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Cetak</a><?php
+	$link_excel="lap_order_excel.php?tanggal='$tanggal'";
+	?>
+
+<?php
 }else{
 	$tg="lap_order.php";
+
+	$link_excel="lap_order_excel.php";
+
+	?>
+
+	
+
+	<?php
 }
 ?>
+
+<a style="margin-bottom:10px" href="<?php echo $link_excel ?>" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Download Excel</a>
+
+<a style="margin-bottom:10px" href="<?php echo $tg ?>" target="_blank" class="btn btn-default pull-right"><span class='glyphicon glyphicon-print'></span>  Download PDF</a>
 
 <br/>
 <?php 
@@ -59,12 +74,23 @@ if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 	$no=1;
 	while($b=mysql_fetch_array($brg)){
 
+			if ($b['status'] == 'pending') {
+				$status_label = 'default';
+			} elseif ($b['status']=='transfer') {
+				$status_label = 'info';
+			} elseif ($b['status']=='dibayar') {
+				$status_label = 'warning';
+			} elseif ($b['status']=='dikirim') {
+				$status_label = 'primary';
+			} elseif ($b['status']=='selesai') {
+				$status_label = 'success';
+			}
 		?>
 		<tr>
 			<td><?php echo $no++ ?></td>
 			<td><?php echo $b['tgl_order'] ?></td>
 			<td><?php echo $b['kode_order'] ?></td>
-			<td><?php echo $b['status'] ?></td>
+			<td><span class="label label-<?=$status_label?>"><?php echo $b['status'] ?></span></td>
 			<td><?php echo uang($b['subtotal']) ?></td>
 			<td><?php echo uang($b['ongkir']) ?></td>
 			<td><?php echo uang($b['total']) ?></td>					

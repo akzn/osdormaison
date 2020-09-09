@@ -1,5 +1,8 @@
 <?php 
-include '../config/config.php';
+// include '../config/config.php';
+
+require '../../config/conn.php';
+
 $id=$_POST['id_produk'];
 $nama=$_POST['nama_produk'];
 $harga=$_POST['harga'];

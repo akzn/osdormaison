@@ -1,5 +1,8 @@
 <?php 
-include '../config/config.php';
+// include '../config/config.php';
+
+require '../../config/conn.php';
+
 $nama=$_POST['nama'];
 //var_dump($_POST);die;
 

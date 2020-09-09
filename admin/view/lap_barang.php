@@ -8,7 +8,7 @@ $pdf->SetMargins(2,1,1);
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','B',11);
-$pdf->Image('../img/logo.jpg',1,1,2,2);
+$pdf->Image('../img/logo.png',1,1,2,2);
 $pdf->SetX(4);            
 $pdf->MultiCell(19.5,0.5,'Osdormaison',0,'L');
 $pdf->SetX(4);
@@ -36,16 +36,16 @@ $pdf->Cell(4.5, 0.8, 'stok', 1, 0, 'C');
 $pdf->Cell(4.5, 0.8, 'harga', 1, 1, 'C');
 $pdf->SetFont('Arial','',10);
 $no=1;
-$query=mysql_query("select * from tb_produk") or die(mysql_error());
+$query=mysql_query("select * from tb_produk order by id_produk desc") or die(mysql_error());
 while($lihat=mysql_fetch_array($query)){
 	$pdf->Cell(1, 0.8, $no , 1, 0, 'C');
-	$pdf->Cell(7, 0.8, $lihat['nama_produk'],1, 0, 'C');
+	$pdf->Cell(7, 0.8, mb_strimwidth($lihat['nama_produk'], 0, 30, "..."),1, 0, 'C');
 	$pdf->Cell(4.5, 0.8, $lihat['stok'], 1, 0,'C');
 	$pdf->Cell(4.5, 0.8, $lihat['harga'],1, 1, 'C');
 	$no++;
 }
 
-$pdf->Output("laporan_buku.pdf","I");
+$pdf->Output("laporan_barang.pdf","I");
 
 ?>
 

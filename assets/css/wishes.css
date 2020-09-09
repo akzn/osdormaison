@@ -96,10 +96,14 @@ li.pull-right.cart {
 
 
 a.btn.btn-primary.add-to-cart {
-    margin-bottom: 50px;
+    /*margin: 10px;*/
     background-color: #222222;
     border-color: #222222;
     border-radius: 0;
+}
+
+a.product-name{
+  color:#b90505;
 }
 
 .center-row {
@@ -163,6 +167,11 @@ td.text-right{
 
 .navbar {
     border-radius: 0;
+}
+
+.sidebar-category>.nav-pills>li.active>a{
+  color: #fff;
+  background-color: #222222;
 }
 
 .form-control{
