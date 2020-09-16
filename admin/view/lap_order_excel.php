@@ -1,6 +1,17 @@
 <?PHP
 	error_reporting(0);
-	$tgl = (!$_GET['tanggal'])?'ALL':$_GET['tanggal'];
+
+	if ($_GET['tanggal']) {
+		$tanggal=$_GET['tanggal'];
+	}elseif ($_GET['fdate']) {
+		$tanggal=$_GET['fdate'] . ' - ' . $_GET['ldate'];
+	}else{
+		$tanggal = 'SEMUA';
+	}
+
+
+	// $tgl = (!$_GET['tanggal'])?'ALL':$_GET['tanggal'];
+	$tgl = $tanggal;
 
     header("Content-type: application/octet-stream");
     header("Content-Disposition: attachment; filename=laporan-penjualan-".$tgl.".xls");
@@ -27,6 +38,11 @@ include '../config/general_helper.php';
 	if ($_GET['tanggal']) {
 		$tanggal=$_GET['tanggal'];
 		$query=mysql_query("select * from tb_order where tgl_order=" . $tanggal);
+	}elseif ($_GET['fdate']) {
+		$tanggal=$_GET['fdate'] . ' - ' . $_GET['ldate'];
+		$fdate=$_GET['fdate'];
+		$ldate=$_GET['ldate'];
+		$query=mysql_query("select * from tb_order where tgl_order between $fdate AND $ldate ");
 	}else{
 		$tanggal = 'SEMUA';
 		$query=mysql_query("select * from tb_order");
@@ -72,6 +88,10 @@ include '../config/general_helper.php';
 	if ($_GET['tanggal']) {
 		$tanggal = $_GET['tanggal'];
 		$q=mysql_query("select sum(total) as total from tb_order where tgl_order=".$tanggal);
+	}elseif ($_GET['fdate']) {
+		$fdate=$_GET['fdate'];
+		$ldate=$_GET['ldate'];
+		$q=mysql_query("select sum(total) as total from tb_order where tgl_order between $fdate AND $ldate");
 	} else {
 		$q=mysql_query("select sum(total) as total from tb_order");
 	}

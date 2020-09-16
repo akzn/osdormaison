@@ -155,7 +155,7 @@
                                 $get_kategori=mysql_query("SELECT * from tb_kategori order by id_kategori desc");
                                 while($kategori = mysql_fetch_array($get_kategori)): ?>
 
-                                <li class="active"><a href="barang.php"><!-- <span class="glyphicon glyphicon-briefcase"></span> --> <?=ucwords($kategori['nama_kategori'])?></a></li> 
+                                <li class="active"><a href="?hal=kategori&kat=<?=$kategori['id_kategori']?>"><!-- <span class="glyphicon glyphicon-briefcase"></span> --> <?=ucwords($kategori['nama_kategori'])?></a></li> 
 
                             <?php endwhile; ?>
                             </ul>

@@ -8,6 +8,8 @@ $pdf = new FPDF("L","cm","A4");
 
 if ($_GET['tanggal']) {
 		$tanggal=$_GET['tanggal'];
+	}elseif ($_GET['fdate']) {
+		$tanggal=$_GET['fdate'] . ' - ' . $_GET['ldate'];
 	}else{
 		$tanggal='ALL';
 	}
@@ -51,6 +53,10 @@ $pdf->Cell(4.5, 0.8, 'Jumlah', 1, 1, 'C');
 if ($_GET['tanggal']) {
 		$tanggal=$_GET['tanggal'];
 		$query=mysql_query("select * from tb_order where tgl_order=" . $tanggal);
+	}elseif ($_GET['fdate']) {
+		$fdate=$_GET['fdate'];
+		$ldate=$_GET['ldate'];
+		$query=mysql_query("select * from tb_order where tgl_order between $fdate AND $ldate ");
 	}else{
 		$tanggal='ALL';
 		$query=mysql_query("select * from tb_order");
@@ -70,6 +76,10 @@ while($lihat=mysql_fetch_array($query)){
 if ($_GET['tanggal']) {
 		$tanggal=$_GET['tanggal'];
 		$q=mysql_query("select sum(total) as total from tb_order where tgl_order=".$tanggal);
+	}elseif ($_GET['fdate']) {
+		$fdate=$_GET['fdate'];
+		$ldate=$_GET['ldate'];
+		$q=mysql_query("select sum(total) as total from tb_order where tgl_order between $fdate AND $ldate");
 	}else{
 		$tanggal='ALL';
 		$q=mysql_query("select sum(total) as total from tb_order");

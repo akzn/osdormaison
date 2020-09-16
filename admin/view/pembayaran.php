@@ -1,8 +1,8 @@
 <?php include 'header.php';	?>
 
-<h3><span class="glyphicon glyphicon-briefcase"></span>  Data Pemesanan</h3>
+<h3><span class="glyphicon glyphicon-briefcase"></span>  Data Pembayaran</h3>
 <button style="margin-bottom:20px" data-toggle="modal" data-target="#myModal" class="btn btn-info col-md-2 hidden"><span class="glyphicon glyphicon-pencil"></span>  Entry</button>
-<form action="" method="get">
+<form action="" method="get" class="hidden">
 	<div class="input-group col-md-5">
 		<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar"></span></span>
 		<select type="submit" name="tanggal" class="form-control" onchange="this.form.submit()">
@@ -20,6 +20,32 @@
 	</div>
 
 </form>
+
+<div class="row">
+	<div class="col-md-6">
+		
+<p>Filter Periode</p>	
+<form action="pembayaran.php" method="post" class="form-inline">
+	<div class="form-group">
+		<div class="input-group col-md-5">
+			<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar"></span></span>
+			<input type="date" name="fdate" value="<?=$_POST['fdate']?>">
+		</div>
+    </div>
+    <div class="form-group">
+		<div class="input-group col-md-5">
+			<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar"></span></span>
+			<input type="date" name="ldate" value="<?=$_POST['ldate']?>">
+		</div>
+	</div>
+	<input type="submit" name="filterperiodesubmit">
+</form>
+
+</div>
+	
+</div>
+
+
 <br/>
 <?php 
 if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
@@ -33,6 +59,11 @@ if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 	
 
 	<?php
+}elseif ($_POST['filterperiodesubmit']) {
+	$fdate=mysql_real_escape_string($_POST['fdate']);
+	$ldate=mysql_real_escape_string($_POST['ldate']);
+	$tg="lap_payment_pdf.php?fdate='$fdate'&ldate='$ldate'";
+	$link_excel="lap_payment_excel.php?fdate='$fdate'&ldate='$ldate'";	
 }else {
 	$tg="lap_payment_pdf.php";
 
@@ -48,9 +79,17 @@ if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 <?php 
 if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 	echo "<h4> Data Penjualan Tanggal  <a style='color:blue'> ". $_GET['tanggal']."</a></h4>";
+} elseif ($_POST['filterperiodesubmit']) {
+	echo "<h4> Data Penjualan PERIODE  <a style='color:blue'> ". $_POST['fdate']." - ". $_POST['ldate'] ."</a></h4>";
 }
 ?>
-<table class="table">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+
+<table class="table" id="tb-payment">
+	<thead>
 	<tr>
 		<th>No</th>
 		<th>Tanggal</th>
@@ -61,10 +100,16 @@ if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 		<th>Status</th>					
 		<th>Set Status</th>
 	</tr>
+	</thead>
+	<tbody>
 	<?php 
 	if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 		$tanggal=mysql_real_escape_string($_GET['tanggal']);
 		$brg=mysql_query("select * from tb_payment where tgl_konfirmasi like '$tanggal' order by tgl_konfirmasi desc");
+	}elseif ($_POST['filterperiodesubmit']) {
+		$fdate=mysql_real_escape_string($_POST['fdate']);
+		$ldate=mysql_real_escape_string($_POST['ldate']);
+		$brg=mysql_query("select * from tb_payment where tgl_konfirmasi between '$fdate' AND '$ldate' order by tgl_konfirmasi desc");
 	}else{
 		$brg=mysql_query("select * from tb_payment order by tgl_konfirmasi desc");
 	}
@@ -86,7 +131,7 @@ if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 		<tr>
 			<td><?php echo $no++ ?></td>
 			<td><?php echo $b['tgl_konfirmasi'] ?></td>
-			<td><?php echo $b['kode_order'] ?></td>
+			<td><a href="detail_order.php?kode_order=<?=$b['kode_order']?>"><?php echo $b['kode_order'] ?></a></td>
 			<td><?php echo $b['bank_asal'].'<br>'.$b['an_asal'] ?></td>
 			<td><?php echo $b['bank_tujuan'] ?></td>
 
@@ -99,26 +144,34 @@ if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
 			</td>
 		</tr>
 
-		<?php 
-	}
-	?>
-	<tr>
-		<td colspan="5">Total Pemasukan</td>
-		<?php 
+		<?php  } ?> </tbody> <tfoot> <tr> <td colspan="7">Total Pemasukan</td> <?php
+
 		if((isset($_GET['tanggal']))&&($_GET['tanggal']!='All')){
-			$tanggal=mysql_real_escape_string($_GET['tanggal']);
-			$x=mysql_query("select sum(nominal) as total from tb_payment where tgl_konfirmasi='$tanggal'");	
+			$tanggal=mysql_real_escape_string($_GET['tanggal']); $x=mysql_query("select
+			sum(nominal) as total from tb_payment where tgl_konfirmasi='$tanggal'");	
+			$xx=mysql_fetch_array($x);			 echo "<td><b> Rp.".
+			number_format($xx['total']).",-</b></td>"; 
+		}elseif ($_POST['filterperiodesubmit']) {
+			$fdate=mysql_real_escape_string($_POST['fdate']);
+			$ldate=mysql_real_escape_string($_POST['ldate']);
+			$x=mysql_query("select
+			sum(nominal) as total from tb_payment where tgl_konfirmasi between '$fdate' AND '$ldate'");	
 			$xx=mysql_fetch_array($x);			
 			echo "<td><b> Rp.". number_format($xx['total']).",-</b></td>";
-		}else{
-			$x=mysql_query("select sum(nominal) as total from tb_payment");	
-			$xx=mysql_fetch_array($x);			
-			echo "<td><b> Rp.". number_format($xx['total']).",-</b></td>";
-		}
+		}else{ $x=mysql_query("select
+		sum(nominal) as total from tb_payment");	 $xx=mysql_fetch_array($x);			 echo
+		"<td><b> Rp.". number_format($xx['total']).",-</b></td>"; }
 
 		?>
 	</tr>
+	</tfoot>
 </table>
+
+<script type="text/javascript">
+	$(document).ready( function () {
+	    $('#tb-payment').DataTable();
+	} );
+</script>
 
 <!-- modal input -->
 <div id="myModal" class="modal fade">

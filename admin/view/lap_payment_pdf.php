@@ -8,6 +8,8 @@ $pdf = new FPDF("L","cm","A4");
 
 if ($_GET['tanggal']) {
 		$tanggal=$_GET['tanggal'];
+	}elseif ($_GET['fdate']) {
+		$tanggal=$_GET['fdate'] . ' - ' . $_GET['ldate'];
 	}else{
 		$tanggal='ALL';
 	}
@@ -52,6 +54,10 @@ $pdf->Cell(3, 0.8, 'Nominal', 1, 1, 'C');
 if ($_GET['tanggal']) {
 		$tanggal=$_GET['tanggal'];
 		$query=mysql_query("select * from tb_payment where tgl_konfirmasi=" . $tanggal);
+	}elseif ($_GET['fdate']) {
+		$fdate=$_GET['fdate'];
+		$ldate=$_GET['ldate'];
+		$query=mysql_query("select * from tb_payment where tgl_konfirmasi between $fdate AND $ldate ");
 	}else{
 		$tanggal='ALL';
 		$query=mysql_query("select * from tb_payment");
@@ -71,16 +77,20 @@ while($lihat=mysql_fetch_array($query)){
 
 if ($_GET['tanggal']) {
 		$tanggal=$_GET['tanggal'];
-		$q=mysql_query("select sum(total) as total from tb_payment where tgl_konfirmasi=".$tanggal);
+		$q=mysql_query("select sum(nominal) as total from tb_payment where tgl_konfirmasi=".$tanggal);
+	}elseif ($_GET['fdate']) {
+		$fdate=$_GET['fdate'];
+		$ldate=$_GET['ldate'];
+		$q=mysql_query("select sum(nominal) as total from tb_payment where tgl_konfirmasi between $fdate AND $ldate");
 	}else{
 		$tanggal='ALL';
-		$q=mysql_query("select sum(total) as total from tb_payment");
+		$q=mysql_query("select sum(nominal) as total from tb_payment");
 	}
 
 
 // select sum(total_harga) as total from barang_laku where tanggal='$tanggal'
 while($total=mysql_fetch_array($q)){
-	$pdf->Cell(17, 0.8, "Total", 1, 0,'C');		
+	$pdf->Cell(15, 0.8, "Total", 1, 0,'C');		
 	$pdf->Cell(4.5, 0.8, "Rp. ".number_format($total['total'])." ,-", 1, 0,'C');	
 }
 

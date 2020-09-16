@@ -6,8 +6,8 @@
 <br/>
 <?php 
 $per_hal=10;
-$jumlah_record=mysql_query("SELECT COUNT(*) from tb_produk") or die(mysql_error());
-$jum=mysql_result($jumlah_record, 0);
+$jumlah_record=mysql_query("SELECT id_produk as jum from tb_produk") or die(mysql_error());
+$jum=mysqli_num_rows($jumlah_record);
 $halaman=ceil($jum / $per_hal);
 $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 $start = ($page - 1) * $per_hal;
@@ -55,7 +55,7 @@ $start = ($page - 1) * $per_hal;
 			join tb_kategori on tb_kategori.id_kategori = tb_produk.id_kategori
 			order by id_produk desc limit $start, $per_hal")or die(mysql_error());
 	}
-	$no=1;
+	$no=$start+1;
 	while($b=mysql_fetch_array($brg)){
 
 		?>
@@ -80,7 +80,7 @@ $start = ($page - 1) * $per_hal;
 			<?php 
 			for($x=1;$x<=$halaman;$x++){
 				?>
-				<li><a href="?page=<?php echo $x ?>"><?php echo $x ?></a></li>
+				<li class="<?= ($x == $page)? 'active' : '' ?>"><a href="?page=<?php echo $x ?>"><?php echo $x ?></a></li>
 				<?php
 			}
 			?>						

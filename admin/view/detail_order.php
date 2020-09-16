@@ -1,12 +1,26 @@
 <?php include 'header.php';	?>
 <h2>Detail Order</h2>
 <a class="btn" href="order.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
-<?php
+
+<?php 
+
+if ($_GET['id']) {
+
 	$get_order = mysql_query("SELECT * from tb_order where id_order = '".$_GET['id']."' limit 1") or die(mysql_error());
+
+} elseif ($_GET['kode_order']){
+	$get_order = mysql_query("SELECT * from tb_order where kode_order = '".$_GET['kode_order']."' limit 1") or die(mysql_error());
+} 
+
+?>
+
+<?php
+	// $get_order = mysql_query("SELECT * from tb_order where id_order = '".$_GET['id']."' limit 1") or die(mysql_error());
 
 	$status_order = '';
 	
 	while ($ord = mysql_fetch_array($get_order)) {
+		$id_order = $ord['id_order'];
 		$subtotal = $ord['subtotal'];
 		$ongkir = $ord['ongkir'];
 		$total_all = $ord['total'];
@@ -79,7 +93,7 @@
 		<?php 
 		$get_data_order = mysql_query("SELECT * from tb_order_detail
 			join tb_produk on tb_produk.id_produk = tb_order_detail.id_produk
-		 where id_order = '".$_GET['id']."' ") or die(mysql_error());
+		 where id_order = '".$id_order."' ") or die(mysql_error());
 		$start =0;
 		while ($var = mysql_fetch_array($get_data_order)): ?>
 			<tr>

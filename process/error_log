@@ -1,0 +1,40 @@
+[08-Sep-2020 16:11:33 UTC] PHP Warning:  include_once(config/conn.php): failed to open stream: No such file or directory in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 4
+[08-Sep-2020 16:11:33 UTC] PHP Warning:  include_once(): Failed opening 'config/conn.php' for inclusion (include_path='.:/opt/alt/php71/usr/share/pear') in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 4
+[08-Sep-2020 16:11:33 UTC] PHP Warning:  include_once(config/general_helper.php): failed to open stream: No such file or directory in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 5
+[08-Sep-2020 16:11:33 UTC] PHP Warning:  include_once(): Failed opening 'config/general_helper.php' for inclusion (include_path='.:/opt/alt/php71/usr/share/pear') in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 5
+[08-Sep-2020 16:11:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_query() in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 12
+[08-Sep-2020 16:11:40 UTC] PHP Warning:  include_once(config/conn.php): failed to open stream: No such file or directory in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 4
+[08-Sep-2020 16:11:40 UTC] PHP Warning:  include_once(): Failed opening 'config/conn.php' for inclusion (include_path='.:/opt/alt/php71/usr/share/pear') in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 4
+[08-Sep-2020 16:11:40 UTC] PHP Warning:  include_once(config/general_helper.php): failed to open stream: No such file or directory in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 5
+[08-Sep-2020 16:11:40 UTC] PHP Warning:  include_once(): Failed opening 'config/general_helper.php' for inclusion (include_path='.:/opt/alt/php71/usr/share/pear') in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 5
+[08-Sep-2020 16:11:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_query() in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 12
+[08-Sep-2020 16:11:53 UTC] PHP Warning:  include_once(config/conn.php): failed to open stream: No such file or directory in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 4
+[08-Sep-2020 16:11:53 UTC] PHP Warning:  include_once(): Failed opening 'config/conn.php' for inclusion (include_path='.:/opt/alt/php71/usr/share/pear') in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 4
+[08-Sep-2020 16:11:53 UTC] PHP Warning:  include_once(config/general_helper.php): failed to open stream: No such file or directory in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 5
+[08-Sep-2020 16:11:53 UTC] PHP Warning:  include_once(): Failed opening 'config/general_helper.php' for inclusion (include_path='.:/opt/alt/php71/usr/share/pear') in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 5
+[08-Sep-2020 16:11:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_query() in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 12
+[08-Sep-2020 16:12:23 UTC] PHP Warning:  include_once(config/conn.php): failed to open stream: No such file or directory in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 4
+[08-Sep-2020 16:12:23 UTC] PHP Warning:  include_once(): Failed opening 'config/conn.php' for inclusion (include_path='.:/opt/alt/php71/usr/share/pear') in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 4
+[08-Sep-2020 16:12:23 UTC] PHP Warning:  include_once(config/general_helper.php): failed to open stream: No such file or directory in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 5
+[08-Sep-2020 16:12:23 UTC] PHP Warning:  include_once(): Failed opening 'config/general_helper.php' for inclusion (include_path='.:/opt/alt/php71/usr/share/pear') in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 5
+[08-Sep-2020 16:12:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_query() in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 12
+[08-Sep-2020 16:12:32 UTC] PHP Warning:  include_once(config/conn.php): failed to open stream: No such file or directory in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 4
+[08-Sep-2020 16:12:32 UTC] PHP Warning:  include_once(): Failed opening 'config/conn.php' for inclusion (include_path='.:/opt/alt/php71/usr/share/pear') in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 4
+[08-Sep-2020 16:12:32 UTC] PHP Warning:  include_once(config/general_helper.php): failed to open stream: No such file or directory in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 5
+[08-Sep-2020 16:12:32 UTC] PHP Warning:  include_once(): Failed opening 'config/general_helper.php' for inclusion (include_path='.:/opt/alt/php71/usr/share/pear') in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 5
+[08-Sep-2020 16:12:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_query() in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/javalatt/osdormaison.javalatte.xyz/process/div_cart.php on line 12
